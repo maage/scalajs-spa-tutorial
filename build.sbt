@@ -63,7 +63,7 @@ lazy val server = (project in file("server"))
     // compress CSS
     LessKeys.compress in Assets := true
   )
-  .enablePlugins(PlayScala)
+  .enablePlugins(PlayScala, PlayAkkaHttp2Support)
   .disablePlugins(PlayLayoutPlugin) // use the standard directory layout instead of Play's custom
   .aggregate(clients.map(projectToRef): _*)
   .dependsOn(sharedJVM)
@@ -84,3 +84,21 @@ lazy val ReleaseCmd = Command.command("release") {
 
 // loads the Play server project at sbt startup
 onLoad in Global := (Command.process("project server", _: State)) compose (onLoad in Global).value
+
+javaOptions in Global ++= mapToSeq(Settings.jvmOpts)
+PlayKeys.devSettings := mapToSeqM(Settings.jvmOpts)
+
+scalaVersion := "2.12.2"
+
+fork in run := true
+
+def mapToSeq(m : Map[String, String]): Seq[String] = {
+  for {
+    (k, v) <- m
+  } yield { s"-D${k}=${v}" }
+}
+def mapToSeqM(m : Map[String, String]): Map[String, String] = {
+  for {
+    (k, v) <- m
+  } yield { s"${k}" -> s"${v}" }
+}
