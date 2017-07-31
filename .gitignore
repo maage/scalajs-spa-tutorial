@@ -33,4 +33,8 @@ doc/_book
 /_book
 
 *~
-server/src/main/resources/generated.keystore
+generated.keystore
+.ensime_cache/
+project/.ensime
+.ensime
+.history
