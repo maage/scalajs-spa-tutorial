@@ -85,21 +85,9 @@ lazy val ReleaseCmd = Command.command("release") {
 // loads the Play server project at sbt startup
 onLoad in Global := (Command.process("project server", _: State)) compose (onLoad in Global).value
 
-javaOptions in Global ++= mapToSeq(Settings.jvmOpts)
-PlayKeys.devSettings := mapToSeqM(Settings.jvmOpts)
+javaOptions in Global ++= Settings.jvmOptsDef
+PlayKeys.devSettings := Settings.jvmOpts
 
 scalaVersion := "2.12.2"
 
 fork in run := true
-
-def mapToSeq(m : Map[String, String]): Seq[String] = {
-  for {
-    (k, v) <- m
-  } yield { s"-D${k}=${v}" }
-}
-
-def mapToSeqM(m : Map[String, String]): Map[String, String] = {
-  for {
-    (k, v) <- m
-  } yield { s"${k}" -> s"${v}" }
-}
