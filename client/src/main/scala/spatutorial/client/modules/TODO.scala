@@ -53,7 +53,7 @@ object Todo {
         } else {
           // otherwise add an empty placeholder
           VdomArray.empty()
-  }
+        }
       )
   }
 
@@ -126,20 +126,6 @@ object TodoForm {
           )
         )
       )
-    }
-  }
-
-  val component = ScalaComponent.builder[Props]("TodoForm")
-    .initialStateFromProps(p => State(p.item.getOrElse(TodoItem("", 0, "", TodoNormal, completed = false))))
-    .renderBackend[Backend]
-    .build
-
-  def apply(props: Props) = component(props)
-}   .renderBackend[Backend]
-    .build
-
-  def apply(props: Props) = component(props)
-}     )
     }
   }
 
