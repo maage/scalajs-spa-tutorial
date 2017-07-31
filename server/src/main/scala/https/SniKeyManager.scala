@@ -60,27 +60,27 @@ final class SniKeyManager(val keyManager: X509ExtendedKeyManager, val defaultAli
     val session: ExtendedSSLSession = engine.getHandshakeSession.asInstanceOf[ExtendedSSLSession]
 
     getSNIHostname(session) match {
-     case Some(hostname) if hasCertChain(hostname) && hasPrivateKey(hostname) =>
-       logger.debug("chooseEngineServerAlias: using selected sniHostname {} as server alias", hostname)
-       hostname
-     case _ =>
-       defaultAlias match {
-         case Some(alias) =>
-           logger.debug("chooseEngineServerAlias: using defaultAlias {} as server alias", defaultAlias)
-           alias
-         case None =>
-           logger.debug("chooseEngineServerAlias: no alias found, using super method")
-           super.chooseEngineServerAlias(keyType, issuers, engine)
-       }
+      case Some(hostname) if hasCertChain(hostname) && hasPrivateKey(hostname) =>
+        logger.debug("chooseEngineServerAlias: using selected sniHostname {} as server alias", hostname)
+        hostname
+      case _ =>
+        defaultAlias match {
+          case Some(alias) =>
+            logger.debug("chooseEngineServerAlias: using defaultAlias {} as server alias", defaultAlias)
+            alias
+          case None =>
+            logger.debug("chooseEngineServerAlias: no alias found, using super method")
+            super.chooseEngineServerAlias(keyType, issuers, engine)
+        }
     }
   }
 
   override def getCertificateChain(alias: String): Array[X509Certificate] = {
-     keyManager.getCertificateChain(alias)
+    keyManager.getCertificateChain(alias)
   }
 
   override def getPrivateKey(alias: String): PrivateKey = {
-     keyManager.getPrivateKey(alias)
+    keyManager.getPrivateKey(alias)
   }
 
   private def getSNIHostname(session: ExtendedSSLSession): Option[String] = {

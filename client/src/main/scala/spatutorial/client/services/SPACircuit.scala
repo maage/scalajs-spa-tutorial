@@ -40,10 +40,10 @@ case class Todos(items: Seq[TodoItem]) {
 }
 
 /**
-  * Handles actions related to todos
-  *
-  * @param modelRW Reader/Writer to access the model
-  */
+ * Handles actions related to todos
+ *
+ * @param modelRW Reader/Writer to access the model
+ */
 class TodoHandler[M](modelRW: ModelRW[M, Pot[Todos]]) extends ActionHandler(modelRW) {
   override def handle = {
     case RefreshTodos =>
@@ -61,10 +61,10 @@ class TodoHandler[M](modelRW: ModelRW[M, Pot[Todos]]) extends ActionHandler(mode
 }
 
 /**
-  * Handles actions related to the Motd
-  *
-  * @param modelRW Reader/Writer to access the model
-  */
+ * Handles actions related to the Motd
+ *
+ * @param modelRW Reader/Writer to access the model
+ */
 class MotdHandler[M](modelRW: ModelRW[M, Pot[String]]) extends ActionHandler(modelRW) {
   implicit val runner = new RunAfterJS
 

@@ -9,13 +9,14 @@ import play.server.api._
 import play.core.server._
 
 class CustomSSLEngineProvider(
-  serverConfig: ServerConfig,
-  appProvider: ApplicationProvider
+    serverConfig: ServerConfig,
+    appProvider: ApplicationProvider
 ) extends SSLEngineProvider {
 
   val certificateDirectory: String =
     serverConfig.configuration.getOptional[String]("certificateDirectory").getOrElse(
-      s"${System.getProperty("user.home")}/.certificates")
+      s"${System.getProperty("user.home")}/.certificates"
+    )
 
   def readPassword(): Array[Char] = {
     val passwordPath = FileSystems.getDefault.getPath(certificateDirectory, "password")

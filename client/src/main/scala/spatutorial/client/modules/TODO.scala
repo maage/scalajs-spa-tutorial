@@ -48,9 +48,13 @@ object Todo {
           item => editTodo(Some(item)), item => p.proxy.dispatchCB(DeleteTodo(item)))),
         Button(Button.Props(editTodo(None)), Icon.plusSquare, " New")),
         // if the dialog is open, add it to the panel
-        if (s.showTodoForm) TodoForm(TodoForm.Props(s.selectedItem, todoEdited))
-        else // otherwise add an empty placeholder
-          VdomArray.empty())
+        if (s.showTodoForm) {
+          TodoForm(TodoForm.Props(s.selectedItem, todoEdited))
+        } else {
+          // otherwise add an empty placeholder
+          VdomArray.empty()
+  }
+      )
   }
 
   // create the React component for To Do management
@@ -122,6 +126,20 @@ object TodoForm {
           )
         )
       )
+    }
+  }
+
+  val component = ScalaComponent.builder[Props]("TodoForm")
+    .initialStateFromProps(p => State(p.item.getOrElse(TodoItem("", 0, "", TodoNormal, completed = false))))
+    .renderBackend[Backend]
+    .build
+
+  def apply(props: Props) = component(props)
+}   .renderBackend[Backend]
+    .build
+
+  def apply(props: Props) = component(props)
+}     )
     }
   }
 

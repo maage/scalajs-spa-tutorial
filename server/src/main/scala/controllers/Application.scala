@@ -34,9 +34,9 @@ class Application @Inject() (implicit val config: Configuration, env: Environmen
       Router.route[Api](apiService)(
         autowire.Core.Request(path.split("/"), Unpickle[Map[String, ByteBuffer]].fromBytes(b.asByteBuffer))
       ).map(buffer => {
-        val data = Array.ofDim[Byte](buffer.remaining())
-        buffer.get(data)
-        Ok(data)
+          val data = Array.ofDim[Byte](buffer.remaining())
+          buffer.get(data)
+          Ok(data)
       })
   }
 

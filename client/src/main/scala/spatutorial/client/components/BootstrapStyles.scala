@@ -51,7 +51,6 @@ class BootstrapStyles(implicit r: mutable.Register) extends StyleSheet.Inline()(
     val body = styleWrap("modal-body")
     val footer = styleWrap("modal-footer")
   }
-
   val _modal = modal
 
   object listGroup {
@@ -59,8 +58,8 @@ class BootstrapStyles(implicit r: mutable.Register) extends StyleSheet.Inline()(
     val item = styleWrap("list-group-item")
     val itemOpt = commonStyle(contextDomain, "list-group-item")
   }
-
   val _listGroup = listGroup
+
   val pullRight = styleWrap("pull-right")
   val buttonXS = styleWrap("btn-xs")
   val close = styleWrap("close")
