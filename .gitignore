@@ -33,3 +33,4 @@ doc/_book
 /_book
 
 *~
+server/src/main/resources/generated.keystore
