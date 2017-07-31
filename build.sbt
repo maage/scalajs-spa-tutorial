@@ -97,6 +97,7 @@ def mapToSeq(m : Map[String, String]): Seq[String] = {
     (k, v) <- m
   } yield { s"-D${k}=${v}" }
 }
+
 def mapToSeqM(m : Map[String, String]): Map[String, String] = {
   for {
     (k, v) <- m
