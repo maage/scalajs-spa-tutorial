@@ -81,7 +81,7 @@ object Settings {
     "org.webjars" % "log4javascript" % versions.log4js / "js/log4javascript_uncompressed.js" minified "js/log4javascript.js"
   ))
 
-  val jvmOptsSource = Map[String, String](
+  val jvmOptsSource = Seq(
     // Turn on HTTPS, turn off HTTP.
     // This should be https://example.com:9443
     "http.port" -> "disabled",
@@ -140,14 +140,7 @@ object Settings {
     //"jsse.enableSNIExtension" -> "false"
   )
 
-  val jvmOpts = Seq()
-
-  val jvmOptsDef = Seq[String](
-    //for {
-    //  (k, v) <- jvmOpts
-    //} yield {
-    //  s"-D${k}=${v}"
-    //}
-  )
+  val jvmOpts = jvmOptsSource
+  val jvmOptsDef = jvmOptsSource.map(x => s"-D${x._1}=${x._2}")
 
 }
