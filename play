@@ -2,7 +2,10 @@
 
 set -x
 
-AGENT=$(find ~/.ivy2/cache -name 'jetty-alpn-agent-*.jar' | head -1)
+# This is needed only to use dev mode: sbt run
+# Run: sbt stage
+# to get jetty-alpn-agent there
+AGENT=$(find $(pwd)/server/target/universal/stage/jetty-alpn-agent -name 'jetty-alpn-agent-*.jar' | head -1)
 if [ -n "$AGENT" ]; then
     SBT_OPTS+=" -javaagent:$AGENT"
     export SBT_OPTS
