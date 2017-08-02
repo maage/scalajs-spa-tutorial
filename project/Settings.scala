@@ -56,7 +56,7 @@ object Settings {
     "org.webjars" % "bootstrap" % versions.bootstrap % Provided,
     "com.lihaoyi" %% "utest" % versions.uTest % Test
     /* "ws", */
-    /* "guice", */
+    /* "net.codingwell" %% "scala-guice" % "4.1.0" */
     //"org.scalatestplus.play" %% "scalatestplus-play" % "3.1.1" % Test
   ))
 

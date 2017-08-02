@@ -88,3 +88,6 @@ onLoad in Global := (Command.process("project server", _: State)) compose (onLoa
 javaOptions in server ++= Settings.jvmOptsDef
 PlayKeys.devSettings in server := Settings.jvmOpts
 fork in run := true
+
+libraryDependencies += guice
+libraryDependencies in server += guice
