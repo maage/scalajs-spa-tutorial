@@ -61,7 +61,8 @@ lazy val server = (project in file("server"))
     pipelineStages in Assets := Seq(scalaJSPipeline),
     pipelineStages := Seq(digest, gzip),
     // compress CSS
-    LessKeys.compress in Assets := true
+    LessKeys.compress in Assets := true,
+    fork in run := true
   )
   .enablePlugins(PlayScala, PlayAkkaHttp2Support)
   .disablePlugins(PlayLayoutPlugin) // use the standard directory layout instead of Play's custom
