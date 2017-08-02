@@ -88,6 +88,6 @@ onLoad in Global := (Command.process("project server", _: State)) compose (onLoa
 javaOptions in Global ++= Settings.jvmOptsDef
 PlayKeys.devSettings := Settings.jvmOpts
 
-scalaVersion := "2.12.2"
+scalaVersion := Settings.versions.scala
 
 fork in run := true
