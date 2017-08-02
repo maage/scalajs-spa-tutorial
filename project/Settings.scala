@@ -93,7 +93,7 @@ object Settings {
     // trustxforwarded is configured to be true in the application configuration file.
 
     // Define the SSLEngineProvider in our own class.
-    "play.http.sslengineprovider" -> "https.CustomSSLEngineProvider",
+    "play.server.https.engineProvider" -> "https.CustomSSLEngineProvider",
 
     // Enable this if you want to turn on client authentication
     //"play.ssl.needClientAuth" -> "true",
