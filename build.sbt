@@ -64,7 +64,7 @@ lazy val server = (project in file("server"))
     // compress CSS
     LessKeys.compress in Assets := true,
     fork in run := true,
-    javaOptions ++= Settings.jvmOptsDef,
+    javaOptions ++= Settings.jvmOpts.map(x => s"-D${x._1}=${x._2}"),
     PlayKeys.devSettings := Settings.jvmOpts
   )
   .enablePlugins(PlayScala)

@@ -81,7 +81,7 @@ object Settings {
     "org.webjars" % "log4javascript" % versions.log4js / "js/log4javascript_uncompressed.js" minified "js/log4javascript.js"
   ))
 
-  val jvmOptsSource = Seq(
+  val jvmOpts = Seq(
     // Turn on HTTPS, turn off HTTP.
     // This should be https://example.com:9443
     "http.port" -> "disabled",
@@ -139,8 +139,5 @@ object Settings {
     // Uncomment if you want to run "./play client" explicitly without SNI.
     //"jsse.enableSNIExtension" -> "false"
   )
-
-  val jvmOpts = jvmOptsSource
-  val jvmOptsDef = jvmOptsSource.map(x => s"-D${x._1}=${x._2}")
 
 }
