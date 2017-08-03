@@ -53,6 +53,7 @@ lazy val server = (project in file("server"))
     scalaVersion := Settings.versions.scala,
     scalacOptions ++= Settings.scalacOptions,
     libraryDependencies ++= Settings.jvmDependencies.value,
+    libraryDependencies += guice,
     commands += ReleaseCmd,
     // triggers scalaJSPipeline when using compile or continuous compilation
     compile in Compile := ((compile in Compile) dependsOn scalaJSPipeline).value,
@@ -62,9 +63,13 @@ lazy val server = (project in file("server"))
     pipelineStages := Seq(digest, gzip),
     // compress CSS
     LessKeys.compress in Assets := true,
-    fork in run := true
+    fork in run := true,
+    javaOptions ++= Settings.jvmOptsDef,
+    PlayKeys.devSettings := Settings.jvmOpts
   )
-  .enablePlugins(PlayScala, PlayAkkaHttp2Support)
+  .enablePlugins(PlayScala)
+  // Because HTTP/2 limits only https and hostnames/certs this makes build untestable
+  // .enablePlugins(PlayAkkaHttp2Support)
   .disablePlugins(PlayLayoutPlugin) // use the standard directory layout instead of Play's custom
   .aggregate(clients.map(projectToRef): _*)
   .dependsOn(sharedJVM)
@@ -85,10 +90,3 @@ lazy val ReleaseCmd = Command.command("release") {
 
 // loads the Play server project at sbt startup
 onLoad in Global := (Command.process("project server", _: State)) compose (onLoad in Global).value
-
-javaOptions in server ++= Settings.jvmOptsDef
-PlayKeys.devSettings in server := Settings.jvmOpts
-fork in run := true
-
-libraryDependencies += guice
-libraryDependencies in server += guice
