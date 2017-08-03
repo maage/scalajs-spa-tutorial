@@ -28,7 +28,11 @@ object TodoList {
           case TodoHigh => style.itemOpt(CommonStyle.danger)
         }
         <.li(itemStyle,
-          <.input.checkbox(^.checked := item.completed, ^.onChange --> p.stateChange(item.copy(completed = !item.completed))),
+          <.label(^.`for` := item.id),
+          <.input.checkbox(
+            ^.id := item.id,
+            ^.checked := item.completed,
+            ^.onChange --> p.stateChange(item.copy(completed = !item.completed))),
           <.span(" "),
           if (item.completed) <.s(item.content) else <.span(item.content),
           Button(Button.Props(p.editItem(item), addStyles = Seq(bss.pullRight, bss.buttonXS)), "Edit"),
