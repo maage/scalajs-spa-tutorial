@@ -5,7 +5,7 @@ trait Api {
   def welcomeMsg(name: String): String
 
   // get Todo items
-  def getAllTodos: Seq[TodoItem]
+  def getAllTodos(): Seq[TodoItem]
 
   // update a Todo
   def updateTodo(item: TodoItem): Seq[TodoItem]

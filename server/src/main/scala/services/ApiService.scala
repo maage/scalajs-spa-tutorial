@@ -15,7 +15,7 @@ class ApiService extends Api {
   override def welcomeMsg(name: String): String =
     s"Welcome to SPA, $name! Time is now ${new Date}"
 
-  override def getAllTodos: Seq[TodoItem] = {
+  override def getAllTodos(): Seq[TodoItem] = {
     // provide some fake Todos
     Thread.sleep(300)
     println(s"Sending ${todos.size} Todo items")
