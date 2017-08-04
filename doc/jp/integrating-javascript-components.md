@@ -119,16 +119,16 @@ and calling the appropriate chart function.
 
 ```scala
 val Chart = ScalaComponent.builder[ChartProps]("Chart")
-  .render_P((P) => {
+  .render_P(p =>
     <.canvas(VdomAttr("width") := p.width, VdomAttr("height") := p.height)
-  })
+  )
   .componentDidMount(scope => Callback {
     // access context of the canvas
     val ctx = scope.getDOMNode.asInstanceOf[HTMLCanvasElement].getContext("2d")
     // create the actual chart using the 3rd party component
     scope.props.style match {
-      case LineChart => new JSChart(ctx).Line(scope.props.data)
-      case BarChart => new JSChart(ctx).Bar(scope.props.data)
+      case LineChart => new JSChart(ctx, ChartConfiguration("line", scope.props.data))
+      case BarChart => new JSChart(ctx, ChartConfiguration("bar", scope.props.data))
       case _ => throw new IllegalArgumentException
     }
   }).build

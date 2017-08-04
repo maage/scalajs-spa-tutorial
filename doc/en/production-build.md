@@ -49,7 +49,6 @@ lazy val ReleaseCmd = Command.command("release") {
     "set elideOptions in client := Seq()" ::
     state
 }
-}
 ```
 
 and enable it in the `server` project

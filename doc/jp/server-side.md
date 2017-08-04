@@ -19,7 +19,7 @@ object Application extends Controller {
 
       // call Autowire route
       Router.route[Api](apiService)(
-        autowire.Core.Request(path.split("/"), Unpicクライアント側と同様に、kle[Map[がtring, ByteBuffer]].fromBytes(b.asByteBuffer))そのため、単に、
+        autowire.Core.Request(path.split("/"), Unpickle[Map[String, ByteBuffer]].fromBytes(b.asByteBuffer))
       ).map(buffer => {
         val data = Array.ofDim[Byte](buffer.remaining())
         buffer.get(data)
