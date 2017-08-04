@@ -246,7 +246,7 @@ However, because the dialog box itself contains controls that need to actually c
 component via properties.
 
 ```scala
-// header and footer are functions, so that they can get access to the 
+// header and footer are functions, so that they can get access to the
 // hide() function for their buttons
 case class Props(header: Callback => VdomNode, footer: Callback => VdomNode,
                  closed: Callback, backdrop: Boolean = true,
@@ -273,4 +273,3 @@ To show the dialog box after it has been created, we again call `modal()` via jQ
   // instruct Bootstrap to show the modal
   jQuery(scope.getDOMNode).modal(js.Dynamic.literal("backdrop" -> P.backdrop, "keyboard" -> P.keyboard, "show" -> true))
 ```
-

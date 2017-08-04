@@ -208,7 +208,7 @@ class Backend(t: BackendScope[Props, Unit]) {
 그러나 대화 상자 자체에는 대화 상자를 실제로 닫아야하는 컨트롤이 포함되어 있으므로이 기능을 속성을 통해 부모 구성 요소에 노출해야합니다.
 
 ```scala
-// header and footer are functions, so that they can get access to the 
+// header and footer are functions, so that they can get access to the
 // hide() function for their buttons
 case class Props(header: Callback => VdomNode, footer: Callback => VdomNode,
                  closed: Callback, backdrop: Boolean = true,
